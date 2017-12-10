@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="css/custom.css">
 
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+		<script src="http://rawgit.com/danialfarid/ng-file-upload/master/dist/ng-file-upload.min.js"></script>
 
 		<script src="js/app.js"></script>
 
@@ -47,10 +48,23 @@
 
 			<div id="images-form" class="row">
 				<div class="col-sm-8">
-					<form>
-						<div class="form-group">
+					<form name="form" ng-submit="formSubmit()" novalidate>
+						<h3>Some form</h3>
+						Images:
+						<div class="btn btn-primary" ng-model="files" ngf-select="uploadFiles($files)" multiple="multiple">Choose files to upload</div>
+						<div class="row">
+							<div ng-repeat="image in tempUploadedImages">
+								<div class="col-md-2 image-block">
+									<img ngf-src="!image.$error && image">
+									<p>Title: {{image.name}}</p>
+									<p>Usage-Type: {{image.usageType}}</p>
+									<p>Size: {{image.size}}</p>
+								</div>
+							</div>
 						</div>
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="saveImages()">Add</button>
+						<hr/>
+						<p>Something else</p>
+						<button type="submit" class="btn btn-primary">Save</button>
 					</form>
 				</div>
 			</div>
