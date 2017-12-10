@@ -1,0 +1,61 @@
+<!doctype html>
+
+<html ng-app="testApp">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+
+		<script src="js/app.js"></script>
+
+		<script src="js/controllers/main.js"></script>
+
+		<script src="js/models/image.js"></script>
+		<script src="js/services/images.js"></script>
+
+		<script src="js/models/list.js"></script>
+	</head>
+
+	<body ng-controller="mainController">
+		<div class="container">
+
+			<div id="images-list" class="row">
+				<div ng-repeat="image in imageList.items">
+					<div class="col-md-2 image-block" ng-click="imageList.selectItem(image.id)" ng-class="imageList.selectedItems.indexOf(image.id) > -1 ? 'selected' : ''">
+						<img ng-src="images/{{image.filename}}">
+						<p>Title: {{image.title}}</p>
+						<p>Usage-Type:{{image.usageType}}</p>
+						<p>Size: {{image.filesize}}</p>
+					</div>
+				</div>
+				
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+			</div>
+
+			<div ng-show="imageList.selectedItems.length > 0">
+				<button type="button" class="btn btn-danger" ng-click="removeSeletedItems(imageList)">Remove Selected Images</button>
+			</div>
+
+			<hr/>
+
+			<div id="images-form" class="row">
+				<div class="col-sm-8">
+					<form>
+						<div class="form-group">
+						</div>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="saveImages()">Add</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+</html>
