@@ -51,7 +51,7 @@
 					<form name="form" ng-submit="formSubmit()" novalidate>
 						<h3>Some form</h3>
 						Images:
-						<div class="btn btn-primary" ng-model="files" ngf-select="uploadFiles($files)" multiple="multiple">Choose files to upload</div>
+						<div class="btn btn-primary" ng-model="files" ngf-select="uploadFiles($files)" multiple="multiple" ngf-pattern="'.pdf,.jpg,.png'" accept=".pdf,.jpg,.png">Choose files to upload</div>
 						<div class="row">
 							<div ng-repeat="image in tempUploadedImages">
 								<div class="col-md-2 image-block">
